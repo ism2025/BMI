@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_lock_outline_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\Ismail Amassi\Downloads\Compressed\my-icons-collection_2\svg\002-fetus.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_001_google_plus" />
+                            <entry key="sourceFile" value="C:\Users\Ismail Amassi\Downloads\Compressed\my-icons-collection_4\svg\001-google-plus.svg" />
                           </map>
                         </option>
                       </PersistentState>

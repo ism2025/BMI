@@ -16,4 +16,13 @@
     <string name="tips2_info">أثبتت الأبحاث أنه إذا كنت تستهلك العشاء الخاص بك (أو أي وجبة أخرى) أثناء مشاهدة التلفزيون، يمكنك أن تأكل ما يصل الى 40٪ سعرى حراري أكثر من المعتاد ، لاينصح بالأنشغال بمشاهدة التلفاز أو قراءة كتب أو غير ذلك أثناء تناول الطعام .</string>
     <string name="tips2_title">2. لاتتناول الطعام أثناء مشاهدة التلفاز</string>
     <string name="_40">أثبتت الأبحاث أنه إذا كنت تستهلك العشاء الخاص بك (أو أي وجبة أخرى) أثناء مشاهدة التلفزيون، يمكنك أن تأكل ما يصل الى 40٪ سعرى حراري أكثر من المعتاد ، لاينصح بالأنشغال بمشاهدة التلفاز أو قراءة كتب أو غير ذلك أثناء تناول الطعام .</string>
+    <string name="sign_with">أو تسجيل الدخول عبر</string>
+    <string name="forget_password">هل نسيت كلمة المرور ؟</string>
+    <string name="password">كلمة المرور</string>
+    <string name="username">إسم المستخدم</string>
+    <string name="logl">logo</string>
+    <string name="main_title">حاسبة الوزن المثالي</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="facebook_login">facebook login</string>
+    <string name="google_login">google login</string>
 </resources>

@@ -12,18 +12,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/paddings"
-            >
+            style="@style/paddings">
             <TextView
                 android:layout_gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="حاسبة الوزن المثالي"
+                android:text="@string/main_title"
                 android:textColor="@android:color/white"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -31,45 +29,46 @@
         android:layout_weight="1"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_004_body_mass_index" />
-
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/logl"
+            android:src="@mipmap/ic_launcher" />
         <android.support.design.widget.TextInputLayout
+            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:padding="2dp">
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/username_ed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_perm_identity_black_24dp"
                 android:drawablePadding="8dp"
-                android:hint="إسم المستخدم"
+                android:hint="@string/username"
                 android:inputType="text"
-                android:textSize="24sp" />
+                android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
-
         <android.support.design.widget.TextInputLayout
+            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:padding="2dp">
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/password_ed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:drawableEnd="@drawable/ic_lock_outline_black_24dp"
                 android:drawablePadding="8dp"
-                android:hint="كلمة المرور"
+                android:hint="@string/password"
                 android:inputType="textPassword"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
         </android.support.design.widget.TextInputLayout>
-
         <TextView
+            android:id="@+id/forget_pass_tv"
             style="@style/paddings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,41 +76,79 @@
             android:clickable="true"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:paddingBottom="8dp"
-            android:paddingTop="4dp"
-            android:text="هل نسيت كلمة المرور ؟"
+            android:paddingTop="8dp"
+            android:fontFamily=""
+            android:text="@string/forget_password"
             android:textColor="#000000"
             android:textSize="16sp"
-            android:textStyle="normal" />
-
+            android:textStyle="normal"
+            android:focusable="true" />
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_bg"
+            android:text="@string/login"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:layout_marginBottom="4dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_weight="1"
-                android:background="@drawable/bmi_fragment_bg"
-                android:layout_marginTop="10dp"/>
-
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"/>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text=" أو تسجيل الدخول عبر" />
-
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:fontFamily="cursive"
+                android:text="@string/sign_with" />
             <View
                 android:id="@+id/divider4"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bmi_fragment_bg" />
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/fb_ib"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/facbook_btn_bg"
+                android:layout_margin="2dp"
+                android:contentDescription="@string/facebook_login"
+                android:src="@drawable/ic_facebook_logo"/>
+            <ImageButton
+                android:id="@+id/gl_ib"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/google_btn_bg"
+                android:layout_margin="2dp"
+                android:contentDescription="@string/google_login"
+                android:src="@drawable/ic_001_google_plus"/>
 
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>
