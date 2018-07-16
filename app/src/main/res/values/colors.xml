@@ -8,4 +8,5 @@
     <color name="yallow">#FFFF00</color>
     <color name="orange">@android:color/holo_orange_dark</color>
     <color name="red">@android:color/holo_red_dark</color>
+    <color name="black">@android:color/black</color>
 </resources>

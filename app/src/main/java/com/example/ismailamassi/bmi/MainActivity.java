@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText weight = findViewById(R.id.weight);
         final EditText height = findViewById(R.id.height);
         final TextView title = findViewById(R.id.title);
-        Button calc = findViewById(R.id.calc);
+        final Button calc = findViewById(R.id.calc);
         calc.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                     } else if (h > 250) {
                         label.setText(R.string.wrong_height);
                     } else {
-                        Button tips = findViewById(R.id.tips);
-                        tips.setVisibility(View.VISIBLE);
+                        Button sign_to_tip_btn = findViewById(R.id.sign_to_tip_btn);
+                        sign_to_tip_btn.setVisibility(View.VISIBLE);
 
                         double finalH = h / 100d;
                         double bmi = w / (finalH * finalH);
@@ -60,65 +60,48 @@ public class MainActivity extends AppCompatActivity {
                         double less = (18.5 *(finalH *finalH));
                         int lessWeight = (int) (Math.round(less*100d)/100d);
 
+                        final boolean isLogin = false;
+                        if (isLogin == true){
+                            sign_to_tip_btn.setText(" الذهاب إلى الملف الشخصي للمتابعة ");
+                            sign_to_tip_btn.setTextSize(22);
+                        }else {
+                            sign_to_tip_btn.setText(" سجل الدخول للحصول على نصائح و متابعة صحتك ");
+                            sign_to_tip_btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(MainActivity.this, loginActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+
                         if (bmi < 18.5) {
                             number.setTextColor(getResources().getColor(R.color.blue));
                             label.setTextColor(getResources().getColor(R.color.blue));
                             label.setText("تحتاج إلى زيادة وزنك " + (lessWeight - w) + " Kg لتصبح مثالي.");
-                            tips.setBackground(getResources().getDrawable(R.drawable.btn_bg));
-                            tips.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //Intent intent = new Intent(MainActivity.this, tips_to_less_weight.class);
-                                    //startActivity(intent);
-                                }
-                            });
-                            tips.setText(" إقرأ إرشادات صحية لزيادة الوزن ");
+                            sign_to_tip_btn.setBackground(getResources().getDrawable(R.drawable.btn_bg));
                         } else if (bmi >= 18.5 && bmi < 25) {
                             number.setTextColor(getResources().getColor(R.color.green));
                             label.setTextColor(getResources().getColor(R.color.green));
                             label.setText("وزنك مثالي ");
-                            tips.setVisibility(View.INVISIBLE);
+                            sign_to_tip_btn.setBackground(getResources().getDrawable(R.drawable.btn_green));
                         } else if (bmi >= 25 && bmi < 30) {
                             number.setTextColor(getResources().getColor(R.color.yallow));
                             label.setTextColor(getResources().getColor(R.color.yallow));
                             label.setText("تحتاج إلى تخفيف " + (w - moreWeight) + " Kg من وزنك لتصبح مثالي.");
-                            tips.setBackground(getResources().getDrawable(R.drawable.btn_yallow));
-                            tips.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-//                                    Intent intent = new Intent(MainActivity.this, tips_to_more_wieght.class);
-//                                    startActivity(intent);
-                                }
-                            });
-                            tips.setText("إقرأ إرشادات صحية لتخفيف الوزن ");
+                            sign_to_tip_btn.setBackground(getResources().getDrawable(R.drawable.btn_yallow));
+//                            sign_to_tip_btn.setTextColor(getResources().getColor(R.color.black));
                         } else if (bmi >= 30 && bmi < 35) {
                             number.setTextColor(getResources().getColor(R.color.orange));
                             label.setTextColor(getResources().getColor(R.color.orange));
                             label.setText("تحتاج إلى تخفيف " + (w - moreWeight) + " Kg من وزنك لتصبح مثالي.");
-                            tips.setBackground(getResources().getDrawable(R.drawable.btn_orange));
-                            tips.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-//                                    Intent intent = new Intent(MainActivity.this, tips_to_more_wieght.class);
-//                                    startActivity(intent);
-                                }
-                            });
-                            tips.setText("إقرأ إرشادات صحية لتخفيف الوزن ");
+                            sign_to_tip_btn.setBackground(getResources().getDrawable(R.drawable.btn_orange));
                         } else if (bmi > 35){
                             number.setTextColor(getResources().getColor(R.color.red));
                             label.setTextColor(getResources().getColor(R.color.red));
                             label.setText("تحتاج إلى تخفيف " + (w - moreWeight) + " Kg من وزنك لتصبح مثالي.");
-                            tips.setBackground(getResources().getDrawable(R.drawable.btn_red));
-                            tips.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-//                                    Intent intent = new Intent(MainActivity.this, tips_to_more_wieght.class);
-//                                    startActivity(intent);
-                                }
-                            });
-                            tips.setText("إقرأ إرشادات صحية لتخفيف الوزن ");
+                            sign_to_tip_btn.setBackground(getResources().getDrawable(R.drawable.btn_red));
                         }
-
                     }
                 } catch (InputMismatchException inputMismatchException) {
                     label.setText("يرجى إدخال قيمة صحيحة");
@@ -143,13 +126,4 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-//    private void setupPagerAdapter(ViewPager pager) {
-//        MyViewPager myViewPager = new MyViewPager(getSupportFragmentManager());
-//
-//        myViewPager.addFragment(new BlankFragment(), "Blank");
-//        myViewPager.addFragment(new BMIFragment(), "BMI");
-//
-//        pager.setAdapter(myViewPager);
-//    }
 }
