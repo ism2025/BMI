@@ -1,17 +1,20 @@
-package com.example.ismailamassi.bmi;
+package com.example.ismailamassi.bmi.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
+
+import com.example.ismailamassi.bmi.R;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         final EditText weight = findViewById(R.id.weight);
         final EditText height = findViewById(R.id.height);
@@ -69,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             sign_to_tip_btn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(MainActivity.this, loginActivity.class);
+                                    Intent intent = new Intent(MainActivity.this, SignupActivity.class);
                                     startActivity(intent);
                                 }
                             });
@@ -111,19 +117,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 
-//        ViewPager pager = findViewById(R.id.view_pager);
-//        TabLayout tabLayout = findViewById(R.id.tabs);
-//
-//        setupPagerAdapter(pager);
-//        tabLayout.setupWithViewPager(pager);
-//        tabLayout.getTabAt(0).setIcon(R.drawable.ic_002_fetus);
-//
-//        tabLayout.getTabAt(1).setIcon(R.drawable.ic_004_body_mass_index);
-//        tabLayout.getTabAt(1).select();
-
-
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
