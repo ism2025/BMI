@@ -10,18 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".activities.loginActivity">
-
-        </activity>
+        <activity android:name=".activities.loginActivity" />
         <activity android:name=".activities.SignupActivity" />
         <activity android:name=".activities.ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.settingActivity" />
+        <activity android:name=".activities.infoActivity" />
     </application>
 
 </manifest>

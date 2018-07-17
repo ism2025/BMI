@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ProfileActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activities.infoActivity"
+    tools:ignore="ExtraText">
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -22,27 +24,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="@string/main_title"
                 android:drawablePadding="8dp"
-                android:drawableRight="@drawable/ic_perm_identity_white_24dp"
+                android:drawableRight="@drawable/ic_help_outline_white_24dp"
                 android:paddingRight="4dp"
+                android:text="حول التطبيق"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/white" />
         </LinearLayout>
-
     </android.support.v7.widget.Toolbar>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+
+    <LinearLayout
+        style="@style/paddings"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="@string/logl"
+            android:src="@mipmap/ic_launcher" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/paddings"
+            android:text="@string/blblbl"/>
+
+    </LinearLayout>
+
     <android.support.design.widget.FloatingActionButton
+
         android:layout_width="wrap_content"
-        android:theme="@style/MessengerButton"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:src="@drawable/ic_message_black_24dp"
+        android:theme="@style/MessengerButton"
         app:fabSize="normal" />
+
 
 </LinearLayout>

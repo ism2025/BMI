@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.loginActivity">
+
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +18,7 @@
                 android:layout_gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/main_title"
+                android:text="@string/login"
                 android:textColor="@android:color/white"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
         </LinearLayout>

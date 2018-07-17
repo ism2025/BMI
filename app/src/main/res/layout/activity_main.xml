@@ -8,6 +8,23 @@
     tools:context=".activities.MainActivity"
     tools:ignore="ExtraText">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/paddings">
+            <TextView
+                android:layout_gravity="start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_title"
+                android:textColor="@android:color/white"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,6 +57,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="85dp"
                 android:layout_height="85dp"
@@ -122,10 +140,10 @@
                 android:text="@string/calc"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
     </LinearLayout>
-
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:theme="@style/MessengerButton"
@@ -135,4 +153,4 @@
         android:src="@drawable/ic_message_black_24dp"
         app:fabSize="normal" />
 
-</RelativeLayout><!--<LinearLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:orientation="horizontal">--><!--<Button--><!--android:id="@+id/tips"--><!--android:layout_width="0dp"--><!--android:layout_height="wrap_content"--><!--android:layout_marginTop="8dp"--><!--android:layout_weight="3"--><!--android:layout_margin="2dp"--><!--android:textColor="@android:color/white"--><!--android:textSize="16sp"--><!--android:visibility="gone"--><!--android:contentDescription="@string/tips"/>--><!--<Button--><!--android:id="@+id/calc"--><!--android:layout_width="0dp"--><!--android:layout_height="wrap_content"--><!--android:layout_marginTop="8dp"--><!--android:layout_margin="2dp"--><!--android:background="@drawable/btn_bg"--><!--android:text="@string/calc"--><!--android:layout_weight="2"--><!--android:textColor="@android:color/white"--><!--android:textSize="20sp" />--><!--</LinearLayout>-->
+</RelativeLayout>

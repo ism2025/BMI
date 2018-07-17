@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/more"
-        android:title="more"
+    <item
+        android:id="@+id/more"
         android:icon="@drawable/ic_more_vert_black_24dp"
-        app:showAsAction="always">
+        android:title="more"
+        app:showAsAction="always"
+        >
+
         <menu>
-            <item android:id="@+id/my_profile"
+            <item
+                android:id="@+id/my_profile"
                 android:icon="@drawable/ic_perm_identity_black_24dp"
                 android:title="الملف الشخصي"
-                app:showAsAction="never"
-                />
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/setting"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="الإعدادات"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/about_app"
+                android:icon="@drawable/ic_help_outline_black_24dp"
+                android:title="حول التطبيق"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/other_apps"
+                android:icon="@drawable/ic_002_app_1"
+                android:title="تطبيقات أخرى"
+                app:showAsAction="never" />
         </menu>
     </item>
-
 </menu>
