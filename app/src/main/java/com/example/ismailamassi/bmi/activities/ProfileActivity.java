@@ -1,24 +1,44 @@
 package com.example.ismailamassi.bmi.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ListAdapter;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.ismailamassi.bmi.R;
+import com.example.ismailamassi.bmi.adapters.ImageAdapter;
 import com.example.ismailamassi.bmi.adapters.ProfileAdapter;
 import com.example.ismailamassi.bmi.items.ProfileItem;
 
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
-
+    Button show_tips_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Button show_tips_btn = findViewById(R.id.show_tips_btn);
+        show_tips_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(ProfileActivity.this, tipsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ArrayList<ProfileItem> items = new ArrayList<>();
         for (int i = 1; i <= 20; i++){
@@ -26,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
             item.date = "date " + i;
             item.height = (double)i;
             item.weight = (double)i;
-            item.mass = Math.random()*40;
+            item.mass = (Math.round((Math.random()*40) * 100d) / 100d);
             items.add(item);
         }
         RecyclerView recyclerView = findViewById(R.id.rv);
@@ -34,6 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -45,4 +66,5 @@ public class ProfileActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
 }

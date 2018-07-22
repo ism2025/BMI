@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".activities.MainActivity"
+    tools:context=".activities.about_appActivity"
     tools:ignore="ExtraText">
 
     <RelativeLayout
@@ -30,10 +29,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:layout_gravity="end"
-                    android:gravity="end"
-                    android:layout_marginRight="8dp"
+                    android:layout_gravity="start"
+                    android:text="@string/main_title"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:textColor="@android:color/white" />
             </LinearLayout>
@@ -43,21 +40,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tabs"
+            android:orientation="vertical"
+            android:layout_margin="16dp">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center"/>
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:text="@string/الوصف"
+                android:textSize="18sp"
+                android:textAlignment="viewEnd"/>
 
-            </android.support.design.widget.TabLayout>
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v4.view.ViewPager>
 
         </LinearLayout>
 
@@ -73,3 +69,5 @@
     </RelativeLayout>
 
 </ScrollView>
+
+

@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ismailamassi.bmi.R;
 import com.example.ismailamassi.bmi.helpers.Validation;
+import com.fourhcode.forhutils.FUtilsValidation;
 
 import org.json.JSONObject;
 
@@ -65,8 +66,16 @@ public class loginActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(loginActivity.this ,MainActivity.class);
-                startActivity(intent);
+                if (!FUtilsValidation.isEmpty(username_ed, "الحقل مطلوب")&&
+                        FUtilsValidation.isValidEmail(username_ed, "ادخل بريد الكتروني صالح")&&
+                        !FUtilsValidation.isEmpty(password_ed, "الحقل مطلوب")){
+                    if (!FUtilsValidation.isLengthCorrect(password_ed.getText().toString(), 6, 32)){
+                        password_ed.setError("كلمة المر");
+                    }else {
+                        Intent intent = new Intent(loginActivity.this ,MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
             }
         });
     }

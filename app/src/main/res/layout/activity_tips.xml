@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:orientation="vertical"
-    tools:context=".activities.MainActivity"
+    tools:context=".activities.tipsActivity"
     tools:ignore="ExtraText">
 
     <RelativeLayout
@@ -24,42 +22,28 @@
             <LinearLayout
                 style="@style/paddings"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:layout_gravity="end"
-                    android:gravity="end"
-                    android:layout_marginRight="8dp"
+                    android:layout_gravity="start"
+                    android:drawablePadding="8dp"
+                    android:drawableRight="@drawable/ic_perm_identity_white_24dp"
+                    android:paddingRight="4dp"
+                    android:text="@string/main_title"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:textColor="@android:color/white" />
             </LinearLayout>
+
         </android.support.v7.widget.Toolbar>
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.design.widget.TabLayout>
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v4.view.ViewPager>
-
-        </LinearLayout>
+            android:layout_weight="1" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -69,7 +53,5 @@
             android:src="@drawable/ic_message_black_24dp"
             android:theme="@style/MessengerButton"
             app:fabSize="normal" />
-
     </RelativeLayout>
-
 </ScrollView>
