@@ -81,15 +81,17 @@ public class LoginActivity extends AppCompatActivity {
                                     int id;
                                     String username;
                                     String email;
+                                    String age;
                                     int role;
                                     String token;
                                     try {
                                         id = jsonObject.getInt("user_id");
                                         username = jsonObject.getString("username");
                                         email = jsonObject.getString("user_email");
+                                        age = jsonObject.getString("user_age");
                                         role = jsonObject.getInt("user_role");
                                         token = jsonObject.getString("user_token");
-                                        User user = new User(id, username, email, role, token);
+                                        User user = new User(id, username, email,age, role, token);
                                         SharedPreferencesUtils.setUser(user);
                                         Intent intent = new Intent(LoginActivity.this ,MainActivity.class);
                                         startActivity(intent);

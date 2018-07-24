@@ -9,6 +9,7 @@ public class AppConstant {
     public static final String USER_ID="user_id";
     public static final String USER_NAME="user_name";
     public static final String USER_EMAIL="user_email";
+    public static final String USER_AGE="user_age";
     public static final String USER_ROLE="user_role";
     public static final String TOKEN="token";
     public static final String NOTIFICATION_TOKEN= "notification_token";

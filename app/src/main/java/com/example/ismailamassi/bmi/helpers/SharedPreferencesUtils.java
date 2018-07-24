@@ -14,6 +14,7 @@ public class SharedPreferencesUtils {
             editor.putInt(AppConstant.USER_ID, user.getId());
             editor.putString(AppConstant.USER_NAME, user.getUsername());
             editor.putString(AppConstant.USER_EMAIL, user.getEmail());
+            editor.putString(AppConstant.USER_AGE, user.getAge());
             editor.putInt(AppConstant.USER_ROLE, user.getRole());
             editor.putString(AppConstant.TOKEN, user.getToken());
             editor.commit();
@@ -29,6 +30,10 @@ public class SharedPreferencesUtils {
 
     public static String getUserEmail() {
         return prefs.getString(AppConstant.USER_EMAIL, "");
+    }
+
+    public static String getUserAge() {
+        return prefs.getString(AppConstant.USER_AGE, "");
     }
 
     public static int getUserRole() {
