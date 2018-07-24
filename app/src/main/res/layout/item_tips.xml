@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tips_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    app:cardElevation="2dp"
+    app:contentPadding="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/tips_img_iv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp"
+            android:src="@drawable/tips1" />
+
+        <TextView
+            android:id="@+id/tips_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="عنوان النصيحة"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/tips_descriptions_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:text="الحمد لله رب العالمين الحمد لله رب العالمين الحمد لله رب العالمين الحمد لله رب العالمين الحمد لله رب العالمين الحمد لله رب العالمين"
+            android:textAlignment="viewEnd"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
