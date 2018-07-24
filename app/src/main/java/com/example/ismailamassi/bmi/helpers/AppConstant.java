@@ -6,6 +6,10 @@ public class AppConstant {
 
     public static final String LOGIN_TAG = "login_tag";
 
+    public static final int SUPER_ADMIN_ROLE=1;
+    public static final int REGULAR_ADMIN_ROLE=2;
+    public static final int REGULAR_USER_ROLE=3;
+
     public static final String USER_ID="user_id";
     public static final String USER_NAME="user_name";
     public static final String USER_EMAIL="user_email";

@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.ismailamassi.bmi.R;
+import com.example.ismailamassi.bmi.helpers.AppConstant;
 import com.example.ismailamassi.bmi.helpers.ICompletionListener;
 import com.example.ismailamassi.bmi.helpers.SharedPreferencesUtils;
 import com.example.ismailamassi.bmi.helpers.VolleyRequests;
@@ -38,70 +39,56 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onClickItem() {
-//        login_btn.setOnClickListener(view -> {
-//            RequestQueue queue = Volley.newRequestQueue(this);
-//            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, "#fdfdf", null, new Response.Listener<JSONObject>() {
-//                @Override
-//                public void onResponse(JSONObject response) {
-//
-//                }
-//
-//            }, new Response.ErrorListener() {
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//
-//                }
-//            });
-//            queue.add(request);
-//        });
-        new_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this ,SignupActivity.class);
-                startActivity(intent);
-            }
+        new_account.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this ,SignupActivity.class);
+            startActivity(intent);
         });
-        login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!FUtilsValidation.isEmpty(username_ed, "الحقل مطلوب")&&
-                        FUtilsValidation.isValidEmail(username_ed, "ادخل بريد الكتروني صالح")&&
-                        !FUtilsValidation.isEmpty(password_ed, "الحقل مطلوب")){
-                    if (!FUtilsValidation.isLengthCorrect(password_ed.getText().toString(), 6, 32)){
-                        password_ed.setError("كلمة المر");
-                    }else {
-                        VolleyRequests volleyRequests = new VolleyRequests();
-                        //TODO Add Login Url
-                        String url = "";
-                        volleyRequests.login(url, username_ed.getText().toString(), password_ed.getText().toString(), new ICompletionListener() {
-                            @Override
-                            public void onCompletionListener(JSONObject jsonObject) {
-                                if (jsonObject != null){
-                                    //TODO Implement Success login
-                                    int id;
-                                    String username;
-                                    String email;
-                                    String age;
-                                    int role;
-                                    String token;
-                                    try {
-                                        id = jsonObject.getInt("user_id");
-                                        username = jsonObject.getString("username");
-                                        email = jsonObject.getString("user_email");
-                                        age = jsonObject.getString("user_age");
-                                        role = jsonObject.getInt("user_role");
-                                        token = jsonObject.getString("user_token");
-                                        User user = new User(id, username, email,age, role, token);
-                                        SharedPreferencesUtils.setUser(user);
-                                        Intent intent = new Intent(LoginActivity.this ,MainActivity.class);
-                                        startActivity(intent);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+
+        login_btn.setOnClickListener(v -> {
+            if (!FUtilsValidation.isEmpty(username_ed, "الحقل مطلوب")&&
+                    FUtilsValidation.isValidEmail(username_ed, "ادخل بريد الكتروني صالح")&&
+                    !FUtilsValidation.isEmpty(password_ed, "الحقل مطلوب")){
+                if (!FUtilsValidation.isLengthCorrect(password_ed.getText().toString(), 6, 32)){
+                    password_ed.setError("كلمة المر");
+                }else {
+                    VolleyRequests volleyRequests = new VolleyRequests();
+                    //TODO Add Login Url
+                    String url = "";
+                    volleyRequests.login(url, username_ed.getText().toString(), password_ed.getText().toString(), new ICompletionListener() {
+                        @Override
+                        public void onCompletionListener(JSONObject jsonObject) {
+                            if (jsonObject != null){
+                                //TODO Implement Success login
+                                int id;
+                                String username;
+                                String email;
+                                String age;
+                                int role;
+                                String token;
+                                try {
+                                    id = jsonObject.getInt("user_id");
+                                    username = jsonObject.getString("username");
+                                    email = jsonObject.getString("user_email");
+                                    age = jsonObject.getString("user_age");
+                                    role = jsonObject.getInt("user_role");
+                                    token = jsonObject.getString("user_token");
+                                    User user = new User(id, username, email,age, role, token);
+                                    SharedPreferencesUtils.setUser(user);
+
+                                    if (role == AppConstant.SUPER_ADMIN_ROLE || role == AppConstant.REGULAR_ADMIN_ROLE){
+                                        //TODO (Login)
+                                    }else {
+                                        //TODO (Login)
                                     }
+                                    Intent intent = new Intent(LoginActivity.this ,MainActivity.class);
+                                    startActivity(intent);
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             }
         });

@@ -35,11 +35,12 @@ public class VolleyRequests{
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
     }
 
-    public void register(String url , String username, String email, String password, final ICompletionListener completionListener){
+    public void register(String url , String username, String email, String password, String dob, final ICompletionListener completionListener){
         Map<String, String> postParam= new HashMap<String, String>();
         postParam.put("username", username);
         postParam.put("email", email);
         postParam.put("password", password);
+        postParam.put("dob", dob);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,
                 new JSONObject(postParam),
