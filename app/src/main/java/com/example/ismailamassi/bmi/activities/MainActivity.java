@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (SharedPreferencesUtils.getUserRole() == 0)
+        if (!SharedPreferencesUtils.getUserRole())
             getMenuInflater().inflate(R.menu.main_menu, menu);
         else
             getMenuInflater().inflate(R.menu.admin_menu, menu);
@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.messages:
+                return true;
             case R.id.my_profile:
                 my_profile_action();
                 return true;
@@ -62,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.other_apps:
                 other_apps_action();
+                return true;
+            case R.id.logout:
+                SharedPreferencesUtils.clearUser();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

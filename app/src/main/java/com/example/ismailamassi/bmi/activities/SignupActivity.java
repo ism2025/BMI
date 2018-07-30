@@ -2,8 +2,8 @@ package com.example.ismailamassi.bmi.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.ismailamassi.bmi.R;
@@ -21,9 +20,9 @@ import com.example.ismailamassi.bmi.helpers.Methods;
 import com.example.ismailamassi.bmi.helpers.SharedPreferencesUtils;
 import com.example.ismailamassi.bmi.helpers.Validation;
 import com.example.ismailamassi.bmi.helpers.webservices.ApiUrls;
-import com.example.ismailamassi.bmi.helpers.webservices.ICompletionListener;
-import com.example.ismailamassi.bmi.helpers.webservices.VolleyRequests;
 import com.example.ismailamassi.bmi.models.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.json.JSONException;
@@ -92,7 +91,7 @@ public class SignupActivity extends AppCompatActivity {
                 ProgressDialog progressDialog = UIApplication.getInstance().getProgressDialog(this,"الرجاء الانتظار...." , false);
                 progressDialog.show();
 
-                Map<String, String> postParam= new HashMap<String, String>();
+                Map<String, String> postParam= new HashMap<>();
                 postParam.put("name", Methods.getStringFromEditText(username_ed));
                 postParam.put("email", Methods.getStringFromEditText(email_ed));
                 postParam.put("password", Methods.getStringFromEditText(password_ed));
@@ -103,24 +102,45 @@ public class SignupActivity extends AppCompatActivity {
                         new JSONObject(postParam),
                         response -> {
                             progressDialog.dismiss();
-                            Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+                            Log.d("dataII", "onClickItem: " + response.toString());
+                            try {
+                                if (response.getBoolean("status")){
+                                    //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+                                    Gson gson = new GsonBuilder().create();
+                                    User user = gson.fromJson(response.getJSONObject("user").toString(), User.class);
+                                    SharedPreferencesUtils.setUser(user);
+                                    Toast.makeText(this, SharedPreferencesUtils.getUserID() + " " + SharedPreferencesUtils.getUserEmail() + " " + SharedPreferencesUtils.getUserName(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else {
+                                    Toast.makeText(this, "خطأ في البيانات", Toast.LENGTH_SHORT).show();
+                                    password_ed.setText("");
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         },
                         error -> {
                             progressDialog.dismiss();
-                            switch (error.networkResponse.statusCode){
-                                case 400:
-                                    Toast.makeText(this, "تأكد من ادخال كلمة المرور واسم المستخدم من 6 لـ 32 حرف ومن ادخال بريد الكتروني صالح", Toast.LENGTH_SHORT).show();
-                                case 409:
-                                    email_ed.requestFocus();
-                                    email_ed.setError("البريد الالكتروني مستخدم");
-                                    break;
-                                case 500:
-                                    Toast.makeText(this, "لقد حدث خطأ ما", Toast.LENGTH_LONG).show();
+                            Log.d("dataII", "onClickItem: " + error.getMessage());
+
+                            //Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                            if (error.networkResponse != null){
+                                password_ed.setText("");
+                                switch (error.networkResponse.statusCode){
+                                    case 409:
+                                        email_ed.requestFocus();
+                                        email_ed.setError("البريد الالكتروني مستخدم");
+                                        break;
+                                    case 500:
+                                        Toast.makeText(this, "لقد حدث خطأ ما", Toast.LENGTH_LONG).show();
+                                }
                             }
                         }){
                     @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        HashMap<String, String> headers = new HashMap<String, String>();
+                    public Map<String, String> getHeaders() {
+                        HashMap<String, String> headers = new HashMap<>();
                         headers.put("Content-Type", "application/json");
                         return headers;
                     }
@@ -128,5 +148,20 @@ public class SignupActivity extends AppCompatActivity {
                 UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
             }
         });
+
+        fb_ib.setOnClickListener(v->{
+
+        });
+        gl_ib.setOnClickListener(v->{
+
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

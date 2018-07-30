@@ -49,6 +49,8 @@ public class BmiFragment extends Fragment {
 
         if (SharedPreferencesUtils.getUserID().isEmpty())
             goto_login.setVisibility(View.VISIBLE);
+        else
+            goto_login.setVisibility(View.GONE);
 
         calc.setOnClickListener(v -> {
             if (!Validation.isEmpty(height, "الحقل مطلوب") && !Validation.isEmpty(weight, "الحقل مطلوب")){
@@ -145,6 +147,7 @@ public class BmiFragment extends Fragment {
         goto_login.setOnClickListener(view1->{
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
+            getActivity().finish();
         });
         return view;
 

@@ -45,6 +45,15 @@
                 android:icon="@drawable/ic_002_app_1"
                 android:title="تطبيقات أخرى"
                 app:showAsAction="never" />
+            <group>
+                <item
+                    android:id="@+id/logout"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:icon="@drawable/ic_cancel"
+                    android:title="تسجيل الخروج"
+                    app:showAsAction="never" />
+            </group>
         </menu>
     </item>
 </menu>

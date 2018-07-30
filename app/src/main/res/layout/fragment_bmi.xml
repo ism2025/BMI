@@ -126,6 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
+                android:visibility="gone"
                 android:layout_gravity="center"
                 android:text="سجل الدخول للمتابعة والحصول على النصائح"
                 android:textColor="@android:color/black"

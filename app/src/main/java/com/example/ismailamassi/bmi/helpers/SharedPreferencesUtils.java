@@ -12,10 +12,11 @@ public class SharedPreferencesUtils {
 
         public static void setUser(User user) {
             editor.putString(AppConstant.USER_ID, user.getId());
-            editor.putString(AppConstant.USER_NAME, user.getUsername());
+            editor.putString(AppConstant.USER_NAME, user.getName());
             editor.putString(AppConstant.USER_EMAIL, user.getEmail());
-            editor.putString(AppConstant.USER_AGE, user.getAge());
-            editor.putInt(AppConstant.USER_ROLE, user.getRole());
+            editor.putBoolean(AppConstant.USER_ROLE, user.isAdmin());
+            editor.putString(AppConstant.USER_BIRTH_DATE, user.getDateOfBirth());
+            editor.putString(AppConstant.USER_CREATED_AT, user.getDateOfBirth());
             editor.putString(AppConstant.TOKEN, user.getToken());
             editor.commit();
         }
@@ -33,17 +34,25 @@ public class SharedPreferencesUtils {
     }
 
     public static String getUserAge() {
-        return prefs.getString(AppConstant.USER_AGE, "");
+        return prefs.getString(AppConstant.USER_BIRTH_DATE, "");
     }
 
-    public static int getUserRole() {
-        return prefs.getInt(AppConstant.USER_ROLE, -1);
+    public static boolean getUserRole() {
+        return prefs.getBoolean(AppConstant.USER_ROLE, false);
+    }
+
+    public static String getUserCreateAt() {
+        return prefs.getString(AppConstant.USER_CREATED_AT, "");
     }
 
     public static String getUserToken() {
         return prefs.getString(AppConstant.TOKEN, "");
     }
 
+    public static void clearUser(){
+            editor.clear();
+            editor.commit();
+    }
     public static void setNotificationToken(Context context,String Token) {
         editor.putString(AppConstant.NOTIFICATION_TOKEN, Token);
         editor.commit();
