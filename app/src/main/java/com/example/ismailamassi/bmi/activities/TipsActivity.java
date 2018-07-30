@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.example.ismailamassi.bmi.R;
 import com.example.ismailamassi.bmi.adapters.TipsAdapter;
@@ -25,6 +26,9 @@ public class TipsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tips);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         RecyclerView recyclerView = findViewById(R.id.rv);
         tipsImagesRecourse = AppConstant.tipsImagesRecourse;
         tipTitles = getResources().getStringArray(R.array.tips_titles);
@@ -40,9 +44,11 @@ public class TipsActivity extends AppCompatActivity {
 
     }
 
-
     private void initTips() {
         for (int i = 0; i < tipsImagesRecourse.length; i++)
-            tipsItems.add(new TipsItem(tipsImagesRecourse[i], tipTitles[i], tipDescriptions[i]));
+            try {
+                tipsItems.add(new TipsItem(tipsImagesRecourse[i], tipTitles[i], tipDescriptions[i]));
+            } catch (Exception ignored) {
+            }
     }
 }

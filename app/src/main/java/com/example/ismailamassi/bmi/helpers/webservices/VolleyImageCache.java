@@ -1,4 +1,4 @@
-package com.example.ismailamassi.bmi.helpers;
+package com.example.ismailamassi.bmi.helpers.webservices;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;

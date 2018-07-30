@@ -111,26 +111,26 @@
                 android:visibility="invisible" />
 
             <Button
-                android:id="@+id/sign_to_tip_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/btn_bg"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:visibility="gone" />
-
-            <Button
                 android:id="@+id/calc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/btn_bg"
                 android:text="@string/calc"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/goto_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:layout_gravity="center"
+                android:text="سجل الدخول للمتابعة والحصول على النصائح"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:clickable="true"
+                android:layout_marginBottom="8dp"/>
         </LinearLayout>
 </ScrollView>

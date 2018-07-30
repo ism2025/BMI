@@ -11,7 +11,7 @@ public class SharedPreferencesUtils {
     private static SharedPreferences.Editor editor = UIApplication.getInstance().getSharedPreferencesEditor();
 
         public static void setUser(User user) {
-            editor.putInt(AppConstant.USER_ID, user.getId());
+            editor.putString(AppConstant.USER_ID, user.getId());
             editor.putString(AppConstant.USER_NAME, user.getUsername());
             editor.putString(AppConstant.USER_EMAIL, user.getEmail());
             editor.putString(AppConstant.USER_AGE, user.getAge());
@@ -20,8 +20,8 @@ public class SharedPreferencesUtils {
             editor.commit();
         }
 
-    public static int getUserID() {
-        return prefs.getInt(AppConstant.USER_ID, -1);
+    public static String getUserID() {
+        return prefs.getString(AppConstant.USER_ID, "");
     }
 
     public static String getUserName() {

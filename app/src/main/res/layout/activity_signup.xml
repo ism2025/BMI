@@ -108,7 +108,7 @@
                 android:layout_marginBottom="4dp"
                 android:padding="2dp">
 
-                <EditText
+                <TextView
                     android:id="@+id/dob_ed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -116,8 +116,10 @@
                     android:drawableEnd="@drawable/ic_date_range_black_24dp"
                     android:drawablePadding="8dp"
                     android:hint="@string/dob"
-                    android:inputType="none"
-                    android:textSize="18sp" />
+                    android:clickable="true"
+                    android:textSize="18sp"
+                    android:textAlignment="viewEnd"
+                    android:focusable="true" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView

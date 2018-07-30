@@ -18,11 +18,11 @@
             android:layout_gravity="right"
             android:gravity="right">
             <item
-                android:id="@+id/my_profile"
+                android:id="@+id/users"
                 android:layout_gravity="right"
                 android:gravity="right"
                 android:icon="@drawable/ic_perm_identity_black_24dp"
-                android:title="الملف الشخصي"
+                android:title="المستخدمون"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/setting"

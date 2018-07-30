@@ -1,14 +1,14 @@
 package com.example.ismailamassi.bmi.models;
 
 public class User {
-    private int id;
+    private String id;
     private String username;
     private String email;
     private String age;
     private int role;
     private String token;
 
-    public User(int id, String username, String age, String email, int role, String token) {
+    public User(String id, String username, String email, String age, int role, String token) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -17,7 +17,7 @@ public class User {
         this.token = token;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -25,12 +25,12 @@ public class User {
         return username;
     }
 
-    public String getAge() {
-        return age;
-    }
-
     public String getEmail() {
         return email;
+    }
+
+    public String getAge() {
+        return age;
     }
 
     public int getRole() {

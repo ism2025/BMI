@@ -5,6 +5,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fourhcode.forhutils.FUtilsValidation;
@@ -15,7 +16,59 @@ import java.util.Date;
 import java.util.regex.Pattern;
 
 public class Validation extends FUtilsValidation {
+    public static boolean isEmpty(EditText editText, String error) {
+        if (Methods.getStringFromEditText(editText).isEmpty()) {
+            editText.setError(error);
+            return true;
+        } else {
+            editText.requestFocus();
+            return false;
+        }
+    }
+    public static boolean isEmpty(TextView textView, String error) {
+        if (Methods.getStringFromTextView(textView).isEmpty()) {
+            textView.setError(error);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static boolean isLengthCorrect(EditText editText, int min, int max, String error) {
+        String data = Methods.getStringFromEditText(editText);
 
+        if (data.length() >= min && data.length() <= max) {
+            return true;
+        } else {
+            editText.requestFocus();
+            editText.setError(error);
+            return false;
+        }
+    }
+    public static boolean isValidEmail(EditText emailEditText, String error) {
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(Methods.getStringFromEditText(emailEditText)).matches()) {
+            return true;
+        } else {
+            emailEditText.setError(error);
+            return false;
+        }
+
+    }
+    public static boolean isArabic(EditText editText) {
+        String value = Methods.getStringFromEditText(editText);
+        for (int i = 0; i < value.length(); ) {
+            int c = value.codePointAt(i);
+            if (c >= 0x0600 && c <= 0x06E0)
+                return true;
+            i += Character.charCount(c);
+        }
+        return false;
+    }
+
+
+
+
+
+    /////////////////////////////////////////////////////
     public static boolean isEmail(String value) { return Patterns.EMAIL_ADDRESS.matcher(value).matches(); }
 
     public static boolean isPhone(String value) {
@@ -34,15 +87,7 @@ public class Validation extends FUtilsValidation {
         return value.equals("0");
     }
 
-    public static boolean isArabic(String value) {
-        for (int i = 0; i < value.length(); ) {
-            int c = value.codePointAt(i);
-            if (c >= 0x0600 && c <= 0x06E0)
-                return true;
-            i += Character.charCount(c);
-        }
-        return false;
-    }
+
 
     public static boolean isDateValid(String dateToValidate, String dateFormat) {
 
@@ -68,26 +113,9 @@ public class Validation extends FUtilsValidation {
         return editText.getText().toString().trim().isEmpty();
     }
 
-    public static boolean isLengthCorrect(String text, int min, int max) { return text.length() >= min && text.length() <= max; }
 
-    public static boolean isEmpty(EditText editText, String error) {
-        if (editText.getText().toString().trim().isEmpty()) {
-            editText.setError(error);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    public static boolean isValidEmail(EditText emailEditText, String error) {
-        if (android.util.Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {
-            return true;
-        } else {
-            emailEditText.setError(error);
-            return false;
-        }
 
-    }
 
     public static boolean isValidEmail(EditText emailEditText, String errorIfEmpry, String errorIfNotValid) {
         if (android.util.Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText().toString()).matches()) {

@@ -1,6 +1,8 @@
 package com.example.ismailamassi.bmi;
 
 import android.app.Application;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
@@ -8,7 +10,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.example.ismailamassi.bmi.helpers.VolleyImageCache;
+import com.example.ismailamassi.bmi.helpers.SharedPreferencesUtils;
+import com.example.ismailamassi.bmi.helpers.webservices.VolleyImageCache;
+import com.example.ismailamassi.bmi.models.User;
 
 public class UIApplication extends Application {
 
@@ -16,6 +20,7 @@ public class UIApplication extends Application {
 
     private RequestQueue requestQueue;
     private ImageLoader imageLoader;
+    private ProgressDialog progressDialog;
 
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
@@ -56,8 +61,8 @@ public class UIApplication extends Application {
     }
 
     public SharedPreferences.Editor getSharedPreferencesEditor() {
-        if (prefs == null) {
-            prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (editor == null) {
+            prefs = getSharedPreferences();
             editor = prefs.edit();
         }
         return editor;
@@ -68,5 +73,16 @@ public class UIApplication extends Application {
             prefs = PreferenceManager.getDefaultSharedPreferences(this);
         }
         return prefs;
+    }
+
+    public ProgressDialog getProgressDialog(Context context, String message, boolean isCcancelable) {
+        if (progressDialog == null){
+            progressDialog = new ProgressDialog(context);
+        }
+
+        progressDialog.setMessage(message);
+        progressDialog.setCancelable(isCcancelable);
+
+        return progressDialog;
     }
 }

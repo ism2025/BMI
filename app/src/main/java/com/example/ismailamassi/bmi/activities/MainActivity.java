@@ -5,7 +5,10 @@ import android.content.Intent;
 
 import com.example.ismailamassi.bmi.R;
 import com.example.ismailamassi.bmi.adapters.TapAdapter;
+import com.example.ismailamassi.bmi.helpers.SharedPreferencesUtils;
+import com.example.ismailamassi.bmi.models.User;
 
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +21,6 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        if (SharedPreferencesUtils.getUserRole() == 0)
+            getMenuInflater().inflate(R.menu.main_menu, menu);
+        else
+            getMenuInflater().inflate(R.menu.admin_menu, menu);
 
-        return super.onCreateOptionsMenu(menu);
+        return !SharedPreferencesUtils.getUserID().isEmpty();
     }
 
     @Override

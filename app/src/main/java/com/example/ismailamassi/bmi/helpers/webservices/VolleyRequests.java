@@ -1,4 +1,4 @@
-package com.example.ismailamassi.bmi.helpers;
+package com.example.ismailamassi.bmi.helpers.webservices;
 
 import android.util.Log;
 
@@ -7,7 +7,6 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.ismailamassi.bmi.UIApplication;
 import com.example.ismailamassi.bmi.models.StatusItem;
-import com.example.ismailamassi.bmi.models.User;
 
 import org.json.JSONObject;
 
@@ -16,12 +15,12 @@ import java.util.Map;
 
 public class VolleyRequests{
 
-    public void login(String url, String email, String password, final ICompletionListener completionListener){
+    public void login(String email, String password, final ICompletionListener completionListener){
         Map<String, String> postParam= new HashMap<String, String>();
         postParam.put("email", email);
         postParam.put("password", password);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,ApiUrls.LOGIN_URL,
                 new JSONObject(postParam),
                 completionListener::onCompletionListener,
                 error -> completionListener.onCompletionListener(null)){
@@ -37,15 +36,15 @@ public class VolleyRequests{
 
     public void register(String url , String username, String email, String password, String dob, final ICompletionListener completionListener){
         Map<String, String> postParam= new HashMap<String, String>();
-        postParam.put("username", username);
+        postParam.put("name", username);
         postParam.put("email", email);
         postParam.put("password", password);
-        postParam.put("dob", dob);
+        postParam.put("dateOfBirth", dob);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,url,
                 new JSONObject(postParam),
-                completionListener::onCompletionListener,
-                error -> completionListener.onCompletionListener(null)){
+                response -> completionListener.onCompletionListener(response),
+                error -> completionListener.onCompletionListener(error.networkResponse.statusCode)){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();

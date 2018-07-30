@@ -1,31 +1,39 @@
 package com.example.ismailamassi.bmi.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.ismailamassi.bmi.R;
+import com.example.ismailamassi.bmi.UIApplication;
 import com.example.ismailamassi.bmi.helpers.AppConstant;
-import com.example.ismailamassi.bmi.helpers.ICompletionListener;
+import com.example.ismailamassi.bmi.helpers.Methods;
+import com.example.ismailamassi.bmi.helpers.Validation;
+import com.example.ismailamassi.bmi.helpers.webservices.ApiUrls;
+import com.example.ismailamassi.bmi.helpers.webservices.ICompletionListener;
 import com.example.ismailamassi.bmi.helpers.SharedPreferencesUtils;
-import com.example.ismailamassi.bmi.helpers.VolleyRequests;
+import com.example.ismailamassi.bmi.helpers.webservices.VolleyRequests;
 import com.example.ismailamassi.bmi.models.User;
 import com.fourhcode.forhutils.FUtilsValidation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText username_ed, password_ed;
+    private EditText email_ed, password_ed;
     private TextView forget_pass_tv, new_account;
     private Button login_btn;
     private ImageButton fb_ib, gl_ib;
@@ -40,62 +48,54 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onClickItem() {
         new_account.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this ,SignupActivity.class);
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
+            finish();
         });
 
         login_btn.setOnClickListener(v -> {
-            if (!FUtilsValidation.isEmpty(username_ed, "الحقل مطلوب")&&
-                    FUtilsValidation.isValidEmail(username_ed, "ادخل بريد الكتروني صالح")&&
-                    !FUtilsValidation.isEmpty(password_ed, "الحقل مطلوب")){
-                if (!FUtilsValidation.isLengthCorrect(password_ed.getText().toString(), 6, 32)){
-                    password_ed.setError("كلمة المر");
-                }else {
-                    VolleyRequests volleyRequests = new VolleyRequests();
-                    //TODO Add Login Url
-                    String url = "";
-                    volleyRequests.login(url, username_ed.getText().toString(), password_ed.getText().toString(), new ICompletionListener() {
-                        @Override
-                        public void onCompletionListener(JSONObject jsonObject) {
-                            if (jsonObject != null){
-                                //TODO Implement Success login
-                                int id;
-                                String username;
-                                String email;
-                                String age;
-                                int role;
-                                String token;
-                                try {
-                                    id = jsonObject.getInt("user_id");
-                                    username = jsonObject.getString("username");
-                                    email = jsonObject.getString("user_email");
-                                    age = jsonObject.getString("user_age");
-                                    role = jsonObject.getInt("user_role");
-                                    token = jsonObject.getString("user_token");
-                                    User user = new User(id, username, email,age, role, token);
-                                    SharedPreferencesUtils.setUser(user);
+            if (!Validation.isEmpty(email_ed, "هذا الحقل مطلوب") &&
+                    !Validation.isEmpty(password_ed, "هذا الحقل مطلوب") &&
+                    Validation.isValidEmail(email_ed, "أدخل بريد الكتروني صالح")) {
 
-                                    if (role == AppConstant.SUPER_ADMIN_ROLE || role == AppConstant.REGULAR_ADMIN_ROLE){
-                                        //TODO (Login)
-                                    }else {
-                                        //TODO (Login)
-                                    }
-                                    Intent intent = new Intent(LoginActivity.this ,MainActivity.class);
-                                    startActivity(intent);
+                ProgressDialog progressDialog = UIApplication.getInstance().getProgressDialog(this, "الرجاء الانتظار....", false);
+                progressDialog.show();
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    });
-                }
+                Map<String, String> postParam = new HashMap<String, String>();
+                postParam.put("email", Methods.getStringFromEditText(email_ed));
+                postParam.put("password", Methods.getStringFromEditText(password_ed));
+
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                        ApiUrls.LOGIN_URL,
+                        new JSONObject(postParam),
+                        response -> {
+                            progressDialog.dismiss();
+                            Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+                        },
+                        error -> {
+                            progressDialog.dismiss();
+                            switch (error.networkResponse.statusCode) {
+                                case 404:
+                                    email_ed.requestFocus();
+                                    email_ed.setError("البريد الالكتروني غير مسجل");
+                                    break;
+                                case 500:
+                                    Toast.makeText(this, "لقد حدث خطأ ما", Toast.LENGTH_LONG).show();
+                            } }) {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        HashMap<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json");
+                        return headers;
+                    }
+                };
+                UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
             }
         });
     }
 
     private void bindViews() {
-        username_ed = findViewById(R.id.username_ed);
+            email_ed = findViewById(R.id.username_ed);
         password_ed = findViewById(R.id.password_ed);
         forget_pass_tv = findViewById(R.id.forget_pass_tv);
         new_account = findViewById(R.id.new_account);
