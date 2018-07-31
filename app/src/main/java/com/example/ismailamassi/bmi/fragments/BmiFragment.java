@@ -244,7 +244,7 @@ private AlertDialog alertDialog;
             public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authrization", token);
+                headers.put("Authorization", token);
                 return headers;
             }
         };
