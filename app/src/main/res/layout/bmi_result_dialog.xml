@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="مؤشر كتلة الجسم"
+        android:textSize="30sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/less_tv_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="100"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/number_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="80"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/more_tv_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="20"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/label_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="4dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:textColor="@android:color/black"/>
+
+    <Button
+        android:id="@+id/save_bmi_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="حفظ البيانات" />
+
+    <TextView
+        android:id="@+id/go_to_login_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="سجل الدخول للمتابعة والحصول على النصائح"
+        android:textSize="20sp"
+        android:textAlignment="center"/>
+</LinearLayout>

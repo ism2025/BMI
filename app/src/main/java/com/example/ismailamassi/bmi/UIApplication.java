@@ -76,9 +76,7 @@ public class UIApplication extends Application {
     }
 
     public ProgressDialog getProgressDialog(Context context, String message, boolean isCcancelable) {
-        if (progressDialog == null){
-            progressDialog = new ProgressDialog(context);
-        }
+        progressDialog = new ProgressDialog(context);
 
         progressDialog.setMessage(message);
         progressDialog.setCancelable(isCcancelable);

@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                                 switch (error.networkResponse.statusCode){
                                     case 409:
                                         email_ed.requestFocus();
-                                        email_ed.setError("البريد الالكتروني مستخدم");
+                                        email_ed.setError("البريد الالكتروني غير مستخدم");
                                         break;
                                     case 500:
                                         Toast.makeText(this, "لقد حدث خطأ ما", Toast.LENGTH_LONG).show();
